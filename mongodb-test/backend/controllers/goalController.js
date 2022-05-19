@@ -4,15 +4,14 @@
 const asyncHandler = require('express-async-handler')
 // async handles exceptions inside async express routes and pass them to your express error handlers
 
+const Goal = require('../models/goalModel')
+
 // @desc GET goals
 // @route GET /api/goals
 // @access private
 const getGoals = asyncHandler(async (req, res) => {
-    res.status(200).json(
-        {
-            message: "get goals"
-        }
-    )
+    const goals = await Goal.find()
+    res.status(200).json(goals)
 })
 
 // @desc SET goals
